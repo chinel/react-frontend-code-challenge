@@ -93,3 +93,8 @@
   src: local("Product Sans Black Italic"),
     url("./assets/fonts/ProductSans-BlackItalic.woff") format("woff");
 }
+
+.MuiBreadcrumbs-separator {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}

@@ -1,17 +1,29 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import {
+  BreadCrumb,
   DivisionSummary,
   Header,
   ModuleHistory,
   TableSummary,
 } from "./components";
 
+const useStyles = makeStyles({
+  pageWrapper: {
+    marginTop: "70px",
+    paddingLeft: "32px",
+    paddingRight: "32px",
+  },
+});
+
 function App() {
+  const classes = useStyles();
   return (
     <>
       <Header />
-      <div style={{ marginTop: "100px" }}>
+
+      <div className={classes.pageWrapper}>
+        <BreadCrumb />
         <Grid container space={3}>
           <div></div>
           <div></div>
