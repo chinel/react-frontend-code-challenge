@@ -4,15 +4,30 @@ import {
   BreadCrumb,
   DivisionSummary,
   Header,
+  InfoBox,
   ModuleHistory,
   TableSummary,
 } from "./components";
 
 const useStyles = makeStyles({
   pageWrapper: {
-    marginTop: "70px",
+    marginTop: "65px",
     paddingLeft: "32px",
     paddingRight: "32px",
+  },
+  pageContent: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginTop: "9px",
+  },
+  leftBar: {
+    flexBasis: "18.6%",
+    marginRight: "5px",
+  },
+  rightBar: {
+    flexBasis: "79.7%",
+    marginLeft: "10px",
   },
 });
 
@@ -21,25 +36,18 @@ function App() {
   return (
     <>
       <Header />
-
       <div className={classes.pageWrapper}>
         <BreadCrumb />
-        <Grid container space={3}>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </Grid>
-        <Grid container space={3}>
-          <Grid item xs={12} md={12} lg={3}>
+        <InfoBox />
+        <div className={classes.pageContent}>
+          <div className={classes.leftBar}>
             <DivisionSummary />
             <ModuleHistory />
-          </Grid>
-          <Grid item xs={12} md={12} lg={9}>
+          </div>
+          <div className={classes.rightBar}>
             <TableSummary />
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </div>
     </>
   );

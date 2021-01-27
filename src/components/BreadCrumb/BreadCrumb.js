@@ -1,10 +1,10 @@
 import React from "react";
-import { makeStyles, Breadcrumbs, Typography, Link } from "@material-ui/core";
+import { makeStyles, Breadcrumbs, Link } from "@material-ui/core";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 const useStyles = makeStyles((theme) => ({
   breadCrumb: {
-    marginBottom: "20px",
+    marginBottom: "5px",
   },
   link: {
     color: "#778699",

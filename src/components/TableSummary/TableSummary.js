@@ -17,7 +17,14 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 const useRowStyles = makeStyles({
-  root: {
+  tableWrapper: {
+    boxShadow: "0px 4px 30px rgba(192, 192, 192, 0.25)",
+    borderBottomRightRadius: "6px",
+    borderBottomLeftRadius: "6px",
+    borderTopRightRadius: "0px",
+    borderTopLeftRadius: "0px",
+  },
+  tableContent: {
     "& > *": {
       borderBottom: "unset",
     },
@@ -46,7 +53,7 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow className={classes.root}>
+      <TableRow className={classes.tableContent}>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -112,8 +119,9 @@ const rows = [
 ];
 
 function TableSummary() {
+  const classes = useRowStyles();
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.tableWrapper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
