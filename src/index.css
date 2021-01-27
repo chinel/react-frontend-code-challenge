@@ -1,3 +1,7 @@
+body {
+  background-color: #ffffff !important;
+}
+
 @font-face {
   font-family: "Product Sans Regular";
   font-style: normal;
