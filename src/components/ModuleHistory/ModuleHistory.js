@@ -17,6 +17,12 @@ import {
 } from "@material-ui/lab";
 
 const useStyles = makeStyles({
+  moduleHistoryWrapper: {
+    // eslint-disable-next-line no-useless-computed-key
+    ["@media (max-width:960px)"]: {
+      flexBasis: "50%",
+    },
+  },
   moduleHistoryHeader: {
     paddingBottom: "0px",
   },
@@ -71,7 +77,7 @@ const useStyles = makeStyles({
 function ModuleHistory() {
   const classes = useStyles();
   return (
-    <div>
+    <div className={classes.moduleHistoryWrapper}>
       <List className={classes.moduleHistoryHeader}>
         <ListItem>
           <ListItemIcon className={classes.listIconMain}>

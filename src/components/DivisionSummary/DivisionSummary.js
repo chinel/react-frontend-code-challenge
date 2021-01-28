@@ -15,6 +15,11 @@ const useStyles = makeStyles({
     boxShadow: "0px 4px 30px rgba(192, 192, 192, 0.25)",
     borderRadius: "6px",
     paddingBottom: "5px",
+
+    // eslint-disable-next-line no-useless-computed-key
+    ["@media (max-width:960px)"]: {
+      flexBasis: "50%",
+    },
   },
   listIconMain: {
     minWidth: "auto",

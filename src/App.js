@@ -24,6 +24,14 @@ const useStyles = makeStyles({
   leftBar: {
     flexBasis: "18.6%",
     marginRight: "5px",
+
+    // eslint-disable-next-line no-useless-computed-key
+    ["@media (max-width:960px)"]: {
+      flex: "1 1 100%",
+      margin: "10px 0px 10px 0px",
+      display: "flex",
+      flexDirection: "row",
+    },
   },
   rightBar: {
     flexBasis: "79.7%",
