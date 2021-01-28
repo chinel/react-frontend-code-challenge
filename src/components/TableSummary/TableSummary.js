@@ -81,7 +81,18 @@ const useRowStyles = makeStyles({
   },
   dropDownMenu: {
     zIndex: "999",
+    
+    "& div li": {
+      fontSize: "14px",
+      color: "#778699",
+    },
+
+    "& li:hover": {
+      backgroundColor: "#DEEFFF",
+      color: "#006FD6",
+    },
   },
+
   checkBox: {
     color: "#9F9F9F",
 
