@@ -15,11 +15,16 @@ import {
   ClickAwayListener,
   MenuList,
   Paper,
+  ListItemIcon,
+  ListItemText,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import NotificationsIcon from "../../assets/images/noti-Shape.svg";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import PersonIcon from "@material-ui/icons/Person";
 const useStyles = makeStyles((theme) => ({
   menuBar: {
     boxShadow: "none",
@@ -149,6 +154,12 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "transparent",
     },
+  },
+  menuListIcon: {
+    minWidth: "35px!important",
+  },
+  menuListText: {
+    marginRight: "20px",
   },
 }));
 
@@ -343,9 +354,33 @@ function Header() {
                         id="menu-list-grow"
                         onKeyDown={handleListKeyDown}
                       >
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <ListItemIcon className={classes.menuListIcon}>
+                            <PersonIcon fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary="Profile"
+                            className={classes.menuListText}
+                          />
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <ListItemIcon className={classes.menuListIcon}>
+                            <AccountBoxIcon fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary="My account"
+                            className={classes.menuListText}
+                          />
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <ListItemIcon className={classes.menuListIcon}>
+                            <ExitToAppIcon fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary="Logout"
+                            className={classes.menuListText}
+                          />
+                        </MenuItem>
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>

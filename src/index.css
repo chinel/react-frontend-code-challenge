@@ -1,5 +1,10 @@
 body {
   background-color: #ffffff !important;
+  font-size: 14px !important;
+}
+
+.MuiCheckbox-colorSecondary.Mui-checked {
+  color: #006fd6 !important;
 }
 
 @font-face {

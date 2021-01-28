@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     marginBottom: "20px",
     boxShadow: "0px 4px 30px rgba(192, 192, 192, 0.25)",
     borderRadius: "6px",
-    paddingBottom: "14px",
+    paddingBottom: "5px",
   },
   listIconMain: {
     minWidth: "auto",
@@ -48,8 +48,8 @@ const useStyles = makeStyles({
   },
   detailList: {
     backgroundColor: "red",
-    paddingTop: "2px!important",
-    paddingBottom: "2px!important",
+    paddingTop: "1px!important",
+    paddingBottom: "1px!important",
   },
 });
 

@@ -12,9 +12,53 @@ import {
   Typography,
   Paper,
   makeStyles,
+  withStyles,
+  Checkbox,
+  ClickAwayListener,
+  MenuList,
+  MenuItem,
+  Grow,
+  Popper,
 } from "@material-ui/core";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: "#F3F6F9",
+    color: "#899198",
+    textTransform: "uppercase",
+    fontWeight: "600",
+    fontSize: "12px",
+    lineHeight: "15px",
+    padding: "0 10px",
+  },
+  body: {
+    fontSize: 14,
+    padding: "4px 10px",
+  },
+}))(TableCell);
+
+const StyledInnerTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: "#F3F6F9",
+    color: "#899198",
+    textTransform: "uppercase",
+    fontWeight: "600",
+    fontSize: "12px",
+    lineHeight: "15px",
+    padding: "10px",
+  },
+  body: {
+    fontSize: "12px",
+    lineHeight: "15px",
+    color: "#25213B",
+    padding: "12px 10px",
+  },
+}))(TableCell);
 
 const useRowStyles = makeStyles({
   tableWrapper: {
@@ -24,21 +68,131 @@ const useRowStyles = makeStyles({
     borderTopRightRadius: "0px",
     borderTopLeftRadius: "0px",
   },
-  tableContent: {
-    "& > *": {
-      borderBottom: "unset",
+
+  arrowButton: {
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  },
+  dropDownButton: {
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  },
+  dropDownMenu: {
+    zIndex: "999",
+  },
+  checkBox: {
+    color: "#9F9F9F",
+
+    "&:hover": {
+      backgroundColor: "transparent!important",
+    },
+    "& span": {
+      "&:hover": {
+        backgroundColor: "transparent!important",
+      },
+    },
+  },
+  arrowIcon: {
+    color: "#0052CC",
+    borderRadius: "50%",
+    border: "1px solid #0052CC",
+    fontSize: "15px",
+  },
+  paper: {
+    marginRight: "10px",
+  },
+  name: {
+    fontSize: "14px",
+    lineHeight: "18px",
+    color: "#25213B",
+    fontWeight: "600",
+  },
+  locationstate: {
+    fontWeight: "600",
+    fontSize: "12px",
+    lineHeight: "15px",
+    color: "#25213B",
+    marginBottom: "3px",
+  },
+  street: {
+    fontSize: "12px",
+    lineHeight: "15px",
+    color: "#878592",
+    margin: "0px",
+  },
+  status: {
+    background: "#F6F3FF",
+    borderRadius: "11px",
+    padding: "2px 12px",
+    display: "inline-block",
+    textAlign: "center",
+    fontFamily: "Product Sans Bold",
+    fontSize: "14px",
+    lineHeight: "18px",
+    color: "#8C70FF",
+  },
+  noStatus: {
+    background: "#FFF6DE",
+    borderRadius: "11px",
+    padding: "2px 12px",
+    display: "inline-block",
+    textAlign: "center",
+    fontFamily: "Product Sans Bold",
+    fontSize: "14px",
+    lineHeight: "18px",
+    color: "#F4B400",
+  },
+  entries: {
+    fontFamily: "Product Sans Bold",
+    fontSize: "12px",
+    lineHeight: "15px",
+    color: "#25213B",
+    marginBottom: "3px",
+  },
+  entryType: {
+    fontSize: "12px",
+    lineHeight: "15px",
+    color: "#878592",
+    margin: "0px",
+  },
+  risk: {
+    fontSize: "14px",
+    lineHeight: "18px",
+    fontWeight: "600",
+    display: "flex",
+    alignItems: "center",
+  },
+  riskValue: {
+    display: "inline-block",
+    marginLeft: "10px",
+  },
+  lowRisk: {
+    color: "#3AB65C",
+  },
+  midRisk: {
+    color: "#3C3AB6",
+  },
+  highRisk: {
+    color: "#B63A3A",
+  },
+  innerTable: {
+    marginBottom: "30px",
+    marginTop: "20px",
+    "& tr": {
+      borderBottom: "2px solid #ffffff",
     },
   },
 });
 
-function createData(name, calories, fat, carbs, protein, price) {
+function createData(name, location, status, entries, risk) {
   return {
     name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
+    location,
+    status,
+    entries,
+    risk,
     history: [
       { date: "2020-01-05", customerId: "11091700", amount: 3 },
       { date: "2020-01-02", customerId: "Anonymous", amount: 1 },
@@ -47,95 +201,343 @@ function createData(name, calories, fat, carbs, protein, price) {
 }
 
 function Row(props) {
-  const { row } = props;
+  const { row, checked } = props;
+  const [checkedBox, setCheckedBox] = React.useState(false);
+
   const [open, setOpen] = React.useState(false);
+  const [openMenu, setOpenMenu] = React.useState(false);
   const classes = useRowStyles();
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpenMenu((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpenMenu(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpenMenu(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
+  function handleCheckBox() {
+    setCheckedBox((prevState) => !prevState);
+  }
+
+  React.useEffect(() => {
+    setCheckedBox(checked);
+  }, [checked]);
+
+  function riskType(riskType) {
+    let selectedType;
+    switch (riskType) {
+      case "Low Risk":
+        selectedType = classes.lowRisk;
+        break;
+      case "Mid Risk":
+        selectedType = classes.midRisk;
+        break;
+      case "High Risk":
+        selectedType = classes.highRisk;
+        break;
+      default:
+        break;
+    }
+
+    return selectedType;
+  }
+
+  console.log("checkedBox", checkedBox);
+  console.log("checked", checked);
 
   return (
     <React.Fragment>
       <TableRow className={classes.tableContent}>
-        <TableCell>
+        <StyledTableCell>
+          <Checkbox
+            className={classes.checkBox}
+            checked={checkedBox}
+            onChange={handleCheckBox}
+          />
           <IconButton
             aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
+            disableFocusRipple
+            disableRipple
+            className={classes.arrowButton}
           >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {open ? (
+              <KeyboardArrowUpIcon className={classes.arrowIcon} />
+            ) : (
+              <KeyboardArrowDownIcon className={classes.arrowIcon} />
+            )}
           </IconButton>
-        </TableCell>
-        <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell>
-        <TableCell align="right">{row.calories}</TableCell>
-        <TableCell align="right">{row.fat}</TableCell>
-        <TableCell align="right">{row.carbs}</TableCell>
-        <TableCell align="right">{row.protein}</TableCell>
+        </StyledTableCell>
+        <StyledTableCell component="th" scope="row">
+          <p className={classes.name}>{row.name}</p>
+        </StyledTableCell>
+        <StyledTableCell>
+          <div>
+            <p className={classes.locationstate}>{row.location.state}</p>
+            <p className={classes.street}>{row.location.address}</p>
+          </div>
+        </StyledTableCell>
+        <StyledTableCell>
+          {row.status > 0 ? (
+            <span className={classes.status}>{row.status} Issues found</span>
+          ) : (
+            <span className={classes.noStatus}>No Issues</span>
+          )}
+        </StyledTableCell>
+        <StyledTableCell>
+          <div>
+            <p className={classes.entries}>{row.entries.entries}</p>
+            <p className={classes.entryType}>{row.entries.type}</p>
+          </div>
+        </StyledTableCell>
+        <StyledTableCell>
+          <p className={`${classes.risk} ${riskType(row.risk)} `}>
+            <RiskIcon risk={row.risk} />{" "}
+            <span className={classes.riskValue}>{row.risk}</span>
+          </p>
+        </StyledTableCell>
+        <StyledTableCell>
+          <div>
+            <IconButton
+              ref={anchorRef}
+              aria-label="more"
+              aria-controls="long-menu"
+              aria-haspopup="true"
+              onClick={handleToggle}
+              disableFocusRipple
+              disableRipple
+              className={classes.dropDownButton}
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Popper
+              open={openMenu}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+              className={classes.dropDownMenu}
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === "bottom" ? "center top" : "center bottom",
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        autoFocusItem={openMenu}
+                        id="menu-list-grow"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem onClick={handleClose}>Edit</MenuItem>
+                        <MenuItem onClick={handleClose}>Delete</MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </div>
+        </StyledTableCell>
       </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1}>
-              <Typography variant="h6" gutterBottom component="div">
-                History
-              </Typography>
-              <Table size="small" aria-label="purchases">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
+      {open && (
+        <TableRow>
+          <StyledTableCell
+            style={{ paddingBottom: 0, paddingTop: 0 }}
+            colSpan={7}
+          >
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <Box margin={1}>
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  component="div"
+                  style={{ marginTop: "20px" }}
+                >
+                  Report Breakdown
+                </Typography>
+                <Table
+                  size="small"
+                  aria-label="purchases"
+                  className={classes.innerTable}
+                >
+                  <TableHead>
+                    <TableRow>
+                      <StyledInnerTableCell>Date</StyledInnerTableCell>
+                      <StyledInnerTableCell>Name</StyledInnerTableCell>
+                      <StyledInnerTableCell align="right">
+                        Location
+                      </StyledInnerTableCell>
+                      <StyledInnerTableCell align="right">
+                        Street
+                      </StyledInnerTableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {row.history.map((historyRow) => (
+                      <TableRow key={historyRow.date}>
+                        <StyledInnerTableCell component="th" scope="row">
+                          {historyRow.date}
+                        </StyledInnerTableCell>
+                        <StyledInnerTableCell>
+                          {historyRow.customerId}
+                        </StyledInnerTableCell>
+                        <TableCell align="right">{historyRow.amount}</TableCell>
+                        <StyledInnerTableCell align="right">
+                          {Math.round(historyRow.amount * row.price * 100) /
+                            100}
+                        </StyledInnerTableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Box>
+            </Collapse>
+          </StyledTableCell>
+        </TableRow>
+      )}
     </React.Fragment>
   );
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0, 3.99),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3, 4.99),
-  createData("Eclair", 262, 16.0, 24, 6.0, 3.79),
-  createData("Cupcake", 305, 3.7, 67, 4.3, 2.5),
-  createData("Gingerbread", 356, 16.0, 49, 3.9, 1.5),
+  createData(
+    "Courtney Henry",
+    { state: "Lagos State", address: "8080 Railway stree" },
+    2,
+    { entries: 10, type: "homogenous" },
+    "Low Risk"
+  ),
+  createData(
+    "Courtney Henry",
+    { state: "Lagos State", address: "8080 Railway stree" },
+    2,
+    { entries: 10, type: "homogenous" },
+    "Low Risk"
+  ),
+  createData(
+    "Courtney Henry",
+    { state: "Lagos State", address: "8080 Railway stree" },
+    0,
+    { entries: 10, type: "homogenous" },
+    "Mid Risk"
+  ),
+  createData(
+    "Courtney Henry",
+    { state: "Lagos State", address: "8080 Railway stree" },
+    0,
+    { entries: 10, type: "homogenous" },
+    "Low Risk"
+  ),
+  createData(
+    "Courtney Henry",
+    { state: "Lagos State", address: "8080 Railway stree" },
+    2,
+    { entries: 10, type: "homogenous" },
+    "High Risk"
+  ),
+  createData(
+    "Courtney Henry",
+    { state: "Lagos State", address: "8080 Railway stree" },
+    2,
+    { entries: 10, type: "homogenous" },
+    "Low Risk"
+  ),
+  createData(
+    "Courtney Henry",
+    { state: "Lagos State", address: "8080 Railway stree" },
+    2,
+    { entries: 10, type: "homogenous" },
+    "Low Risk"
+  ),
+  createData(
+    "Courtney Henry",
+    { state: "Lagos State", address: "8080 Railway stree" },
+    2,
+    { entries: 10, type: "homogenous" },
+    "Low Risk"
+  ),
 ];
+
+function RiskIcon({ risk }) {
+  if (risk === "Mid Risk") {
+    return <ArrowForwardIcon className="midRisk" />;
+  }
+
+  if (risk === "High Risk") {
+    return <ArrowUpwardIcon className="highRisk" />;
+  }
+
+  if (risk === "Low Risk") {
+    return (
+      <ArrowForwardIcon
+        className="lowRisk"
+        style={{ transform: "rotateZ(45deg)" }}
+      />
+    );
+  }
+}
 
 function TableSummary() {
   const classes = useRowStyles();
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
   return (
     <TableContainer component={Paper} className={classes.tableWrapper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell />
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <StyledTableCell>
+              <Checkbox
+                className={classes.checkBox}
+                checked={checked}
+                onChange={handleChange}
+              />
+            </StyledTableCell>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell>Location</StyledTableCell>
+            <StyledTableCell>Status</StyledTableCell>
+            <StyledTableCell>Entries</StyledTableCell>
+            <StyledTableCell>Risk Profile</StyledTableCell>
+            <StyledTableCell />
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
+          {rows.map((row, index) => (
+            <Row key={index} row={row} checked={checked} />
           ))}
         </TableBody>
       </Table>
