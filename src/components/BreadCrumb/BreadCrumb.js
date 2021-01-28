@@ -37,11 +37,7 @@ function BreadCrumb(props) {
         <Link color="inherit" href="/" className={classes.link}>
           Divisions
         </Link>
-        <Link
-          color="inherit"
-          href="/getting-started/installation/"
-          className={classes.link}
-        >
+        <Link color="inherit" href="#" className={classes.link}>
           Modules
         </Link>
       </Breadcrumbs>

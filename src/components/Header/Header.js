@@ -17,6 +17,7 @@ import {
   Paper,
   ListItemIcon,
   ListItemText,
+  Link,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import NotificationsIcon from "../../assets/images/noti-Shape.svg";
@@ -39,6 +40,14 @@ const useStyles = makeStyles((theme) => ({
   leftMenu: {
     display: "flex",
     alignItems: "center",
+    "& a": {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      "&:hover": {
+        textDecoration: "none",
+      },
+    },
   },
   rightMenu: {
     display: "flex",
@@ -68,22 +77,35 @@ const useStyles = makeStyles((theme) => ({
   },
   navMenuAnchor: {
     textDecoration: "none",
-    padding: "20px 18px 13px 18px",
+    padding: "6px 18px 20px 18px",
     color: "#778699",
     fontSize: "14px",
     outline: "none",
+
+    "&:hover": {
+      backgroundColor: "#DEEFFF",
+      color: "#006FD6",
+      borderBottom: "4px solid #006FD6",
+      paddingBottom: "12px",
+      paddingTop: "20px",
+      "& svg path": {
+        fill: "#006FD6",
+      },
+    },
   },
   activeLink: {
     backgroundColor: "#DEEFFF",
     color: "#006FD6",
     borderBottom: "4px solid #006FD6",
+    paddingBottom: "13px",
+    paddingTop: "20px",
   },
   svgIcon: {
     marginRight: "10px",
   },
   lastIcon: {
     position: "relative",
-    top: "2px",
+    top: "0px",
   },
   activeSvg: {
     fill: "#006FD6",
@@ -161,6 +183,23 @@ const useStyles = makeStyles((theme) => ({
   menuListText: {
     marginRight: "20px",
   },
+  dropDownAccMenu: {
+    color: "#778699",
+    "& li div>span": {
+      fontSize: "14px",
+    },
+    "& li div>svg path": {
+      fill: "#72809D",
+    },
+    "& li:hover": {
+      backgroundColor: "#DEEFFF",
+      color: "#006FD6",
+
+      "& div>svg path": {
+        fill: "#006FD6",
+      },
+    },
+  },
 }));
 
 function Header() {
@@ -204,10 +243,12 @@ function Header() {
       <AppBar color="primary" position="fixed" className={classes.menuBar}>
         <Toolbar className={classes.toolBar}>
           <div className={classes.leftMenu}>
-            <img alt="logo" src="/images/logo.png" />
-            <Typography className={classes.title}>
-              FE Engineer Test 1
-            </Typography>
+            <Link color="inherit" href="/" className={classes.link}>
+              <img alt="logo" src="/images/logo.png" />
+              <Typography className={classes.title}>
+                FE Engineer Test 1
+              </Typography>
+            </Link>
 
             <div className={classes.navMenuWrapper}>
               <ul className={classes.navMenu}>
@@ -260,7 +301,7 @@ function Header() {
                     <svg
                       className={`${classes.lastIcon} ${classes.svgIcon}`}
                       width="16"
-                      height="16"
+                      height="15"
                       viewBox="0 0 16 16"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -353,6 +394,7 @@ function Header() {
                         autoFocusItem={open}
                         id="menu-list-grow"
                         onKeyDown={handleListKeyDown}
+                        className={classes.dropDownAccMenu}
                       >
                         <MenuItem onClick={handleClose}>
                           <ListItemIcon className={classes.menuListIcon}>
