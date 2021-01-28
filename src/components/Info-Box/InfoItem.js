@@ -1,8 +1,8 @@
-import { Card, makeStyles } from "@material-ui/core";
+import { Card, makeStyles, useMediaQuery } from "@material-ui/core";
 import React from "react";
 import InfoIcon from "../../assets/images/info-icon.svg";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   card: {
     display: "flex",
     justifyContent: "space-between",
@@ -16,6 +16,11 @@ const useStyles = makeStyles({
     },
     "&:last-child": {
       marginRight: "0px",
+    },
+    // eslint-disable-next-line no-useless-computed-key
+    ["@media (max-width:960px)"]: {
+      flex: "1 0 100%",
+      margin: "10px 0px 10px 0px",
     },
   },
   content: {
@@ -38,7 +43,7 @@ const useStyles = makeStyles({
     fontFamily: "Product Sans Bold",
     margin: "0px",
   },
-});
+}));
 
 function InfoItem() {
   const classes = useStyles();

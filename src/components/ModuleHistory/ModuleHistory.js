@@ -60,10 +60,10 @@ const useStyles = makeStyles({
     marginTop: "10px",
 
     "& span": {
-      fontSize: "30px",
+      fontSize: "20px",
       display: "inlineBlock",
       position: "relative",
-      top: "-1px",
+      top: "-3px",
     },
   },
 });
@@ -71,7 +71,7 @@ const useStyles = makeStyles({
 function ModuleHistory() {
   const classes = useStyles();
   return (
-    <>
+    <div>
       <List className={classes.moduleHistoryHeader}>
         <ListItem>
           <ListItemIcon className={classes.listIconMain}>
@@ -132,7 +132,7 @@ function ModuleHistory() {
           </TimelineContent>
         </TimelineItem>
       </Timeline>
-    </>
+    </div>
   );
 }
 

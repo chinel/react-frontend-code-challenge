@@ -38,7 +38,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 14,
-    padding: "4px 10px",
+    padding: "7px 10px",
   },
 }))(TableCell);
 
@@ -81,7 +81,7 @@ const useRowStyles = makeStyles({
   },
   dropDownMenu: {
     zIndex: "999",
-    
+
     "& div li": {
       fontSize: "14px",
       color: "#778699",
@@ -154,6 +154,13 @@ const useRowStyles = makeStyles({
     fontSize: "14px",
     lineHeight: "18px",
     color: "#F4B400",
+  },
+  entryBullet: {
+    display: "inline-block",
+    marginRight: "3px",
+    fontSize: "30px",
+    position: "relative",
+    top: "-1px",
   },
   entries: {
     fontFamily: "Product Sans Bold",
@@ -322,7 +329,10 @@ function Row(props) {
         </StyledTableCell>
         <StyledTableCell>
           <div>
-            <p className={classes.entries}>{row.entries.entries}</p>
+            <p className={classes.entries}>
+              <span className={classes.entryBullet}>.</span>
+              {row.entries.entries} Unique Entries
+            </p>
             <p className={classes.entryType}>{row.entries.type}</p>
           </div>
         </StyledTableCell>
