@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Card,
+  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -50,6 +51,10 @@ const useStyles = makeStyles({
     backgroundColor: "red",
     paddingTop: "1px!important",
     paddingBottom: "1px!important",
+  },
+  detailLink: {
+    color: "#5771EE",
+    textDecoration: "underline",
   },
 });
 
@@ -101,10 +106,14 @@ function DivisionSummary() {
             <ListItemIcon className={classes.detailIcon}>
               <img src="/images/notes-book 1.png" alt="division" />
             </ListItemIcon>
-            <ListItemText
-              primary="2 Journal entries"
-              className={classes.detailText}
-            />
+
+            <Link
+              color="inherit"
+              href="/"
+              className={`${classes.detailLink} ${classes.detailText}`}
+            >
+              2 Journal entries
+            </Link>
           </ListItem>
           <ListItem classeName={classes.detailList}>
             <ListItemIcon className={classes.detailIcon}>
