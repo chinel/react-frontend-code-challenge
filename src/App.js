@@ -1,19 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
-import {
-  BreadCrumb,
-  DivisionSummary,
-  Header,
-  InfoBox,
-  ModuleHistory,
-  TableSummary,
-  MobileNav,
-  NotificationBar,
-} from "./components";
-import useStyles from "./MainStyles";
+import { Header, MobileNav, NotificationBar } from "./components";
+import { DivisionPage } from "./pages";
 
 function App() {
-  const classes = useStyles();
   const [status, setStatus] = React.useState({
     left: false,
     right: false,
@@ -31,22 +20,15 @@ function App() {
   };
   return (
     <>
+      {/* --------- HEADER -------------------- */}
       <Header toggleDrawer={openDrawer} />
+      {/*-------------- MOBILE NAV BAR --------------------*/}
       <MobileNav status={status} toggleDrawerHandler={toggleDrawer} />
+      {/*-------------- NOTIFICATION MENU BAR --------------------*/}
       <NotificationBar status={status} toggleDrawerHandler={toggleDrawer} />
-      <div className={classes.pageWrapper}>
-        <BreadCrumb />
-        <InfoBox />
-        <div className={classes.pageContent}>
-          <div className={classes.leftBar}>
-            <DivisionSummary />
-            <ModuleHistory />
-          </div>
-          <div className={classes.rightBar}>
-            <TableSummary />
-          </div>
-        </div>
-      </div>
+
+      {/* ---------------- MAIN PAGE CONENT -------------------------------- */}
+      <DivisionPage />
     </>
   );
 }
