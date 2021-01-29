@@ -50,7 +50,6 @@ function Row(props) {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpenMenu(false);
   };
 
