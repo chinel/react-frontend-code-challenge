@@ -60,7 +60,7 @@ function TableSummary() {
           </TableHead>
           <TableBody>
             {data.report.map((row) => (
-              <Row key={row.is} row={row} checked={checked} />
+              <Row key={row.id} row={row} checked={checked} />
             ))}
           </TableBody>
         </Table>

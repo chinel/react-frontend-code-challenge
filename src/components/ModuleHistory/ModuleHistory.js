@@ -45,7 +45,7 @@ function ModuleHistory() {
         </List>
         <Timeline className={classes.moduleHistoryTimeline}>
           {data.module_history.map((value) => (
-            <TimelineItem className={classes.itemList}>
+            <TimelineItem className={classes.itemList} key={value.id}>
               <TimelineSeparator className={classes.moduleSeparator}>
                 <TimelineDot />
                 <TimelineConnector />

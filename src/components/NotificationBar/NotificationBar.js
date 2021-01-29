@@ -40,7 +40,7 @@ export default function NotificationBar(props) {
               <p className={classes.notificationHeader}>Notifications</p>
               <List className={classes.mobileDropdownMenu}>
                 {data.notifications.map((notification) => (
-                  <ListItem button>
+                  <ListItem button key={notification.id}>
                     <ListItemIcon>
                       <WarningIcon />
                     </ListItemIcon>
