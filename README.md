@@ -2,7 +2,7 @@
 
 ### [Live Site](https://netflix-clone-4a12f.firebaseapp.com)
 
-![Frontend Code Challenge using React js](https://i.imgur.com/T3HLRux.gifv)
+![Frontend Code Challenge using React js](https://i.imgur.com/T3HLRux.gif)
 
 ## Introduction
 
