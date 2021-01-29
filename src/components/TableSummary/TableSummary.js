@@ -19,6 +19,7 @@ import {
   MenuItem,
   Grow,
   Popper,
+  Hidden,
 } from "@material-ui/core";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
@@ -103,6 +104,10 @@ const useRowStyles = makeStyles({
       "&:hover": {
         backgroundColor: "transparent!important",
       },
+    },
+    // eslint-disable-next-line no-useless-computed-key
+    ["@media screen and (max-width:600px)"]: {
+      padding: "5px",
     },
   },
   arrowIcon: {
@@ -284,9 +289,6 @@ function Row(props) {
     return selectedType;
   }
 
-  console.log("checkedBox", checkedBox);
-  console.log("checked", checked);
-
   return (
     <React.Fragment>
       <TableRow className={classes.tableContent}>
@@ -314,28 +316,34 @@ function Row(props) {
         <StyledTableCell component="th" scope="row">
           <p className={classes.name}>{row.name}</p>
         </StyledTableCell>
-        <StyledTableCell>
-          <div>
-            <p className={classes.locationstate}>{row.location.state}</p>
-            <p className={classes.street}>{row.location.address}</p>
-          </div>
-        </StyledTableCell>
-        <StyledTableCell>
-          {row.status > 0 ? (
-            <span className={classes.status}>{row.status} Issues found</span>
-          ) : (
-            <span className={classes.noStatus}>No Issues</span>
-          )}
-        </StyledTableCell>
-        <StyledTableCell>
-          <div>
-            <p className={classes.entries}>
-              <span className={classes.entryBullet}>.</span>
-              {row.entries.entries} Unique Entries
-            </p>
-            <p className={classes.entryType}>{row.entries.type}</p>
-          </div>
-        </StyledTableCell>
+        <Hidden smDown>
+          <StyledTableCell>
+            <div>
+              <p className={classes.locationstate}>{row.location.state}</p>
+              <p className={classes.street}>{row.location.address}</p>
+            </div>
+          </StyledTableCell>
+
+          <StyledTableCell>
+            {row.status > 0 ? (
+              <span className={classes.status}>{row.status} Issues found</span>
+            ) : (
+              <span className={classes.noStatus}>No Issues</span>
+            )}
+          </StyledTableCell>
+        </Hidden>
+
+        <Hidden smDown>
+          <StyledTableCell>
+            <div>
+              <p className={classes.entries}>
+                <span className={classes.entryBullet}>.</span>
+                {row.entries.entries} Unique Entries
+              </p>
+              <p className={classes.entryType}>{row.entries.type}</p>
+            </div>
+          </StyledTableCell>
+        </Hidden>
         <StyledTableCell>
           <p className={`${classes.risk} ${riskType(row.risk)} `}>
             <RiskIcon risk={row.risk} />{" "}
@@ -418,9 +426,11 @@ function Row(props) {
                       <StyledInnerTableCell align="right">
                         Location
                       </StyledInnerTableCell>
-                      <StyledInnerTableCell align="right">
-                        Street
-                      </StyledInnerTableCell>
+                      <Hidden smDown>
+                        <StyledInnerTableCell align="right">
+                          Street
+                        </StyledInnerTableCell>
+                      </Hidden>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -433,10 +443,12 @@ function Row(props) {
                           {historyRow.customerId}
                         </StyledInnerTableCell>
                         <TableCell align="right">{historyRow.amount}</TableCell>
-                        <StyledInnerTableCell align="right">
-                          {Math.round(historyRow.amount * row.price * 100) /
-                            100}
-                        </StyledInnerTableCell>
+                        <Hidden smDown>
+                          <StyledInnerTableCell align="right">
+                            {Math.round(historyRow.amount * row.price * 100) /
+                              100}
+                          </StyledInnerTableCell>
+                        </Hidden>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -549,9 +561,15 @@ function TableSummary() {
               />
             </StyledTableCell>
             <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell>Location</StyledTableCell>
-            <StyledTableCell>Status</StyledTableCell>
-            <StyledTableCell>Entries</StyledTableCell>
+            <Hidden smDown>
+              <StyledTableCell>Location</StyledTableCell>
+
+              <StyledTableCell>Status</StyledTableCell>
+            </Hidden>
+            <Hidden smDown>
+              <StyledTableCell>Entries</StyledTableCell>
+            </Hidden>
+
             <StyledTableCell>Risk Profile</StyledTableCell>
             <StyledTableCell />
           </TableRow>

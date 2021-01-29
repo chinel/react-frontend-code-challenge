@@ -29,9 +29,9 @@ import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import PersonIcon from "@material-ui/icons/Person";
 const useStyles = makeStyles((theme) => ({
   menuBar: {
-    boxShadow: "none",
+    boxShadow: "inset 0px -1px 0px rgba(220, 225, 231, 0.572143);",
     height: "52px",
-    borderBottom: "1px solid #ccc",
+
     zIndex: "9999",
   },
   toolBar: {
@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
+      outline: "none",
       "&:hover": {
         textDecoration: "none",
       },

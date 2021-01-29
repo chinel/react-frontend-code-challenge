@@ -19,12 +19,23 @@ import {
 const useStyles = makeStyles({
   moduleHistoryWrapper: {
     // eslint-disable-next-line no-useless-computed-key
-    ["@media (max-width:960px)"]: {
+    ["@media screen and (max-width: 1034px) and (min-width: 600px)"]: {
       flexBasis: "50%",
+    },
+    // eslint-disable-next-line no-useless-computed-key
+    ["@media (max-width:599px)"]: {
+      flexBasis: "100%",
     },
   },
   moduleHistoryHeader: {
     paddingBottom: "0px",
+
+    "& li": {
+      // eslint-disable-next-line no-useless-computed-key
+      ["@media screen and (max-width: 599px)"]: {
+        paddingLeft: "2px",
+      },
+    },
   },
 
   listIconMain: {
@@ -45,6 +56,11 @@ const useStyles = makeStyles({
   },
   moduleHistoryTimeline: {
     padding: "0px 0px 0px 16px",
+
+    // eslint-disable-next-line no-useless-computed-key
+    ["@media screen and (max-width: 599px)"]: {
+      padding: "0px 0px 0px 0px",
+    },
   },
   moduleSeparator: {
     "& span:nth-of-type(2)": {

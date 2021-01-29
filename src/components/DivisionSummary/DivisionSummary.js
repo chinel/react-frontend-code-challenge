@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     paddingBottom: "5px",
 
     // eslint-disable-next-line no-useless-computed-key
-    ["@media (max-width:960px)"]: {
+    ["@media screen and (max-width: 1034px) and (min-width: 600px)"]: {
       flexBasis: "50%",
     },
   },
