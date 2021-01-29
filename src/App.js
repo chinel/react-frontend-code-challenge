@@ -7,6 +7,7 @@ import {
   InfoBox,
   ModuleHistory,
   TableSummary,
+  MobileNav,
 } from "./components";
 
 const useStyles = makeStyles({
@@ -65,9 +66,23 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles();
+  const [status, setStatus] = React.useState({
+    left: false,
+  });
+
+  const toggleDrawer = () => {
+    setStatus({ left: false });
+  };
+
+  const openDrawer = () => {
+    setStatus({
+      left: true,
+    });
+  };
   return (
     <>
-      <Header />
+      <Header toggleDrawer={openDrawer} />
+      <MobileNav status={status} toggleDrawerHandler={toggleDrawer} />
       <div className={classes.pageWrapper}>
         <BreadCrumb />
         <InfoBox />

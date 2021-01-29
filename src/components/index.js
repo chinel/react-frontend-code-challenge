@@ -4,3 +4,4 @@ export { default as InfoBox } from "./Info-Box/InfoBox";
 export { default as ModuleHistory } from "./ModuleHistory/ModuleHistory";
 export { default as TableSummary } from "./TableSummary/TableSummary";
 export { default as BreadCrumb } from "./BreadCrumb/BreadCrumb";
+export { default as MobileNav } from "./MobileNav/MobileNav";

@@ -27,6 +27,8 @@ import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import PersonIcon from "@material-ui/icons/Person";
+import MenuIcon from "@material-ui/icons/Menu";
+
 const useStyles = makeStyles((theme) => ({
   menuBar: {
     boxShadow: "inset 0px -1px 0px rgba(220, 225, 231, 0.572143);",
@@ -39,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
+  menuButton: {},
   leftMenu: {
     display: "flex",
     alignItems: "center",
@@ -205,7 +208,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header() {
+function Header(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -246,10 +249,21 @@ function Header() {
       <AppBar color="primary" position="fixed" className={classes.menuBar}>
         <Toolbar className={classes.toolBar}>
           <div className={classes.leftMenu}>
+            <Hidden lgUp>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="open drawer"
+                onClick={props.toggleDrawer}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
             <Link color="inherit" href="/" className={classes.link}>
               <img alt="logo" src="/images/logo.png" />
               <Typography className={classes.title}>
-                FE Engineer Test 2
+                FE Engineer Test
               </Typography>
             </Link>
 

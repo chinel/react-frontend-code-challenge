@@ -53,9 +53,8 @@ const useStyles = makeStyles({
     },
   },
   detailList: {
-    backgroundColor: "red",
-    paddingTop: "1px!important",
-    paddingBottom: "1px!important",
+    paddingTop: "5px!important",
+    paddingBottom: "5px!important",
   },
   detailLink: {
     color: "#5771EE",
@@ -80,7 +79,7 @@ function DivisionSummary() {
       </List>
       <div className={classes.divisionSummaryDetails}>
         <List>
-          <ListItem classeName={classes.detailList}>
+          <ListItem className={classes.detailList}>
             <ListItemIcon className={classes.detailIcon}>
               <img src="/images/phone.png" alt="division" />
             </ListItemIcon>
@@ -89,7 +88,7 @@ function DivisionSummary() {
               className={classes.detailText}
             />
           </ListItem>
-          <ListItem classeName={classes.detailList}>
+          <ListItem className={classes.detailList}>
             <ListItemIcon className={classes.detailIcon}>
               <img src="/images/envelope.png" alt="division" />
             </ListItemIcon>
@@ -98,7 +97,7 @@ function DivisionSummary() {
               className={classes.detailText}
             />
           </ListItem>
-          <ListItem classeName={classes.detailList}>
+          <ListItem className={classes.detailList}>
             <ListItemIcon className={classes.detailIcon}>
               <img src="/images/pin.png" alt="division" />
             </ListItemIcon>
@@ -107,7 +106,7 @@ function DivisionSummary() {
               className={classes.detailText}
             />
           </ListItem>
-          <ListItem classeName={classes.detailList}>
+          <ListItem className={classes.detailList}>
             <ListItemIcon className={classes.detailIcon}>
               <img src="/images/notes-book 1.png" alt="division" />
             </ListItemIcon>
@@ -120,7 +119,7 @@ function DivisionSummary() {
               2 Journal entries
             </Link>
           </ListItem>
-          <ListItem classeName={classes.detailList}>
+          <ListItem className={classes.detailList}>
             <ListItemIcon className={classes.detailIcon}>
               <img src="/images/Group-1800.png" alt="division" />
             </ListItemIcon>
