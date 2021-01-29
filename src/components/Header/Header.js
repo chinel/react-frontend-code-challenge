@@ -87,6 +87,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#778699",
     fontSize: "14px",
     outline: "none",
+    fontFamily: "Product Sans Medium Regular",
+    fontWeight: "400",
 
     "&:hover": {
       backgroundColor: "#DEEFFF",
@@ -193,6 +195,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#778699",
     "& li div>span": {
       fontSize: "14px",
+      fontFamily: "Product Sans Medium Regular",
+      fontWeight: "400",
     },
     "& li div>svg path": {
       fill: "#72809D",
@@ -371,7 +375,7 @@ function Header(props) {
               onClick={() => props.toggleDrawer("right")}
             >
               <Badge
-                badgeContent={2}
+                badgeContent={3}
                 className={classes.notificationBadge}
                 color="secondary"
               >

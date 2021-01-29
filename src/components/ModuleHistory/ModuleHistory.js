@@ -61,6 +61,10 @@ const useStyles = makeStyles({
     ["@media screen and (max-width: 599px)"]: {
       padding: "0px 0px 0px 0px",
     },
+
+    "& li div>span": {
+      backgroundColor: "#707070",
+    },
   },
   moduleSeparator: {
     "& span:nth-of-type(2)": {

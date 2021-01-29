@@ -20,12 +20,16 @@ import {
   Grow,
   Popper,
   Hidden,
+  ListItemIcon,
+  ListItemText,
 } from "@material-ui/core";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -58,6 +62,8 @@ const StyledInnerTableCell = withStyles((theme) => ({
     lineHeight: "15px",
     color: "#25213B",
     padding: "12px 10px",
+    fontFamily: "Product Sans Medium Regular",
+    FontWeight: "500",
   },
 }))(TableCell);
 
@@ -126,17 +132,20 @@ const useRowStyles = makeStyles({
     fontWeight: "600",
   },
   locationstate: {
-    fontWeight: "600",
     fontSize: "12px",
     lineHeight: "15px",
     color: "#25213B",
     marginBottom: "3px",
+    fontFamily: "Product Sans Medium Regular",
+    fontWeight: "600",
   },
   street: {
     fontSize: "12px",
     lineHeight: "15px",
     color: "#878592",
     margin: "0px",
+    fontFamily: "Product Sans Medium Regular",
+    FontWeight: "500",
   },
   status: {
     background: "#F6F3FF",
@@ -168,17 +177,20 @@ const useRowStyles = makeStyles({
     top: "-1px",
   },
   entries: {
-    fontFamily: "Product Sans Bold",
     fontSize: "12px",
     lineHeight: "15px",
     color: "#25213B",
     marginBottom: "3px",
+    fontFamily: "Product Sans Medium Regular",
+    fontWeight: "600",
   },
   entryType: {
     fontSize: "12px",
     lineHeight: "15px",
     color: "#878592",
     margin: "0px",
+    fontFamily: "Product Sans Medium Regular",
+    FontWeight: "500",
   },
   risk: {
     fontSize: "14px",
@@ -205,6 +217,28 @@ const useRowStyles = makeStyles({
     marginTop: "20px",
     "& tr": {
       borderBottom: "2px solid #ffffff",
+    },
+  },
+  dropDownActionMenu: {
+    color: "#778699",
+    "& li>div": {
+      minWidth: "35px",
+    },
+    "& li div>span": {
+      fontSize: "14px",
+      fontFamily: "Product Sans Medium Regular",
+      fontWeight: "400",
+    },
+    "& li div>svg path": {
+      fill: "#72809D",
+    },
+    "& li:hover": {
+      backgroundColor: "#DEEFFF",
+      color: "#006FD6",
+
+      "& div>svg path": {
+        fill: "#006FD6",
+      },
     },
   },
 });
@@ -386,9 +420,21 @@ function Row(props) {
                         autoFocusItem={openMenu}
                         id="menu-list-grow"
                         onKeyDown={handleListKeyDown}
+                        className={classes.dropDownActionMenu}
                       >
-                        <MenuItem onClick={handleClose}>Edit</MenuItem>
-                        <MenuItem onClick={handleClose}>Delete</MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <ListItemIcon className={classes.menuListIcon}>
+                            <EditIcon fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText primary="Edit" />
+                        </MenuItem>
+
+                        <MenuItem onClick={handleClose}>
+                          <ListItemIcon className={classes.menuListIcon}>
+                            <DeleteForeverIcon fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText primary="Delete" />
+                        </MenuItem>
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>

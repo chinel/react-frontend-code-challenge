@@ -23,6 +23,8 @@ const useStyles = makeStyles({
     },
     "& div>span": {
       fontSize: "14px",
+      fontFamily: "Product Sans Medium Regular",
+      fontWeight: "400",
     },
     "& div>svg path": {
       fill: "#72809D",

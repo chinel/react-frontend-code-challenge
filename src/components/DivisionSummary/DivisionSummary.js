@@ -50,6 +50,8 @@ const useStyles = makeStyles({
     "& span": {
       fontSize: "14px",
       color: "#0F1A4F",
+      fontWeight: "400",
+      fontFamily: "Product Sans Medium Regular",
     },
   },
   detailList: {
@@ -59,6 +61,7 @@ const useStyles = makeStyles({
   detailLink: {
     color: "#5771EE",
     textDecoration: "underline",
+    fontFamily: "Product Sans Medium Regular",
   },
 });
 

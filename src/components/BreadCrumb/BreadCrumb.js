@@ -9,6 +9,8 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: "#778699",
     fontSize: "14px",
+    fontFamily: "Product Sans Medium Regular",
+    fontWeight: "400",
     "&:hover": {
       textDecoration: "none",
       color: "#006FD6",
