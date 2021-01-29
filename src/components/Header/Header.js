@@ -90,7 +90,7 @@ function Header(props) {
               <div className={classes.navMenuWrapper}>
                 <ul className={classes.navMenu}>
                   <li className={classes.navMenuItem}>
-                    <a href="/home" className={classes.navMenuAnchor}>
+                    <a href="/" className={classes.navMenuAnchor}>
                       <svg
                         className={classes.svgIcon}
                         width="13"
@@ -110,7 +110,7 @@ function Header(props) {
                     </a>
                   </li>
                   <li className={classes.navMenuItem}>
-                    <a href="/entries" className={classes.navMenuAnchor}>
+                    <a href="/" className={classes.navMenuAnchor}>
                       <svg
                         className={classes.svgIcon}
                         width="13"
@@ -131,7 +131,7 @@ function Header(props) {
                   </li>
                   <li className={classes.navMenuItem}>
                     <a
-                      href="/divisions"
+                      href="/"
                       className={`${classes.navMenuAnchor} ${() =>
                         activeLink("division")} && ${classes.activeLink} `}
                     >

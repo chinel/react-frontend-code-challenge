@@ -46,6 +46,7 @@ export const GET_REPORTS = gql`
       name
       risk
       state
+      history
     }
   }
 `;

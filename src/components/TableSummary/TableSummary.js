@@ -12,6 +12,9 @@ import {
 
 import { StyledTableCell, useRowStyles } from "./TableSummaryStyles";
 import Row from "./Row";
+import { useQuery } from "@apollo/client";
+import { GET_REPORTS } from "../../graphql-endpoint/queries";
+import { LoadingProgress } from "..";
 
 function createData(name, location, status, entries, risk) {
   return {
@@ -27,106 +30,56 @@ function createData(name, location, status, entries, risk) {
   };
 }
 
-const rows = [
-  createData(
-    "Courtney Henry",
-    { state: "Lagos State", address: "8080 Railway stree" },
-    2,
-    { entries: 10, type: "homogenous" },
-    "Low Risk"
-  ),
-  createData(
-    "Courtney Henry",
-    { state: "Lagos State", address: "8080 Railway stree" },
-    2,
-    { entries: 10, type: "homogenous" },
-    "Low Risk"
-  ),
-  createData(
-    "Courtney Henry",
-    { state: "Lagos State", address: "8080 Railway stree" },
-    0,
-    { entries: 10, type: "homogenous" },
-    "Mid Risk"
-  ),
-  createData(
-    "Courtney Henry",
-    { state: "Lagos State", address: "8080 Railway stree" },
-    0,
-    { entries: 10, type: "homogenous" },
-    "Low Risk"
-  ),
-  createData(
-    "Courtney Henry",
-    { state: "Lagos State", address: "8080 Railway stree" },
-    2,
-    { entries: 10, type: "homogenous" },
-    "High Risk"
-  ),
-  createData(
-    "Courtney Henry",
-    { state: "Lagos State", address: "8080 Railway stree" },
-    2,
-    { entries: 10, type: "homogenous" },
-    "Low Risk"
-  ),
-  createData(
-    "Courtney Henry",
-    { state: "Lagos State", address: "8080 Railway stree" },
-    2,
-    { entries: 10, type: "homogenous" },
-    "Low Risk"
-  ),
-  createData(
-    "Courtney Henry",
-    { state: "Lagos State", address: "8080 Railway stree" },
-    2,
-    { entries: 10, type: "homogenous" },
-    "Low Risk"
-  ),
-];
-
 function TableSummary() {
   const classes = useRowStyles();
   const [checked, setChecked] = React.useState(false);
+  const { data, loading, error } = useQuery(GET_REPORTS);
+
+  if (loading) {
+    return <LoadingProgress />;
+  }
+
+  if (error) return <div>Error fetching Report details</div>;
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
 
   return (
-    <TableContainer component={Paper} className={classes.tableWrapper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>
-              <Checkbox
-                className={classes.checkBox}
-                checked={checked}
-                onChange={handleChange}
-              />
-            </StyledTableCell>
-            <StyledTableCell>Name</StyledTableCell>
-            <Hidden smDown>
-              <StyledTableCell>Location</StyledTableCell>
+    data.report && (
+      <TableContainer component={Paper} className={classes.tableWrapper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>
+                <Checkbox
+                  className={classes.checkBox}
+                  checked={checked}
+                  onChange={handleChange}
+                />
+              </StyledTableCell>
+              <StyledTableCell>Name</StyledTableCell>
+              <Hidden smDown>
+                <StyledTableCell>Location</StyledTableCell>
 
-              <StyledTableCell>Status</StyledTableCell>
-            </Hidden>
-            <Hidden smDown>
-              <StyledTableCell>Entries</StyledTableCell>
-            </Hidden>
+                <StyledTableCell>Status</StyledTableCell>
+              </Hidden>
+              <Hidden smDown>
+                <StyledTableCell>Entries</StyledTableCell>
+              </Hidden>
 
-            <StyledTableCell>Risk Profile</StyledTableCell>
-            <StyledTableCell />
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row, index) => (
-            <Row key={index} row={row} checked={checked} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+              <StyledTableCell>Risk Profile</StyledTableCell>
+              <StyledTableCell />
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.report.map((row) => (
+              <Row key={row.is} row={row} checked={checked} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    )
   );
 }
 

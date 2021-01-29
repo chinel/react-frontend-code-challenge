@@ -126,14 +126,14 @@ function Row(props) {
         <Hidden smDown>
           <StyledTableCell>
             <div>
-              <p className={classes.locationstate}>{row.location.state}</p>
-              <p className={classes.street}>{row.location.address}</p>
+              <p className={classes.locationstate}>{row.state}</p>
+              <p className={classes.street}>{row.address}</p>
             </div>
           </StyledTableCell>
 
           <StyledTableCell>
-            {row.status > 0 ? (
-              <span className={classes.status}>{row.status} Issues found</span>
+            {row.issues > 0 ? (
+              <span className={classes.status}>{row.issues} Issues found</span>
             ) : (
               <span className={classes.noStatus}>No Issues</span>
             )}
@@ -145,9 +145,9 @@ function Row(props) {
             <div>
               <p className={classes.entries}>
                 <span className={classes.entryBullet}>.</span>
-                {row.entries.entries} Unique Entries
+                {row.entries} Unique Entries
               </p>
-              <p className={classes.entryType}>{row.entries.type}</p>
+              <p className={classes.entryType}>{row.entry_type}</p>
             </div>
           </StyledTableCell>
         </Hidden>
@@ -242,34 +242,29 @@ function Row(props) {
                     <TableRow>
                       <StyledInnerTableCell>Date</StyledInnerTableCell>
                       <StyledInnerTableCell>Name</StyledInnerTableCell>
-                      <StyledInnerTableCell align="right">
-                        Location
-                      </StyledInnerTableCell>
+                      <StyledInnerTableCell>Location</StyledInnerTableCell>
                       <Hidden smDown>
-                        <StyledInnerTableCell align="right">
-                          Street
-                        </StyledInnerTableCell>
+                        <StyledInnerTableCell>Street</StyledInnerTableCell>
                       </Hidden>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {row.history.map((historyRow) => (
-                      <TableRow key={historyRow.date}>
+                    {row.history && (
+                      <TableRow key={row.history.date_added}>
                         <StyledInnerTableCell component="th" scope="row">
-                          {historyRow.date}
+                          {row.history.date_added}
                         </StyledInnerTableCell>
                         <StyledInnerTableCell>
-                          {historyRow.customerId}
+                          {row.history.name}
                         </StyledInnerTableCell>
-                        <TableCell align="right">{historyRow.amount}</TableCell>
+                        <TableCell>{row.history.location}</TableCell>
                         <Hidden smDown>
-                          <StyledInnerTableCell align="right">
-                            {Math.round(historyRow.amount * row.price * 100) /
-                              100}
+                          <StyledInnerTableCell>
+                            {row.history.street}
                           </StyledInnerTableCell>
                         </Hidden>
                       </TableRow>
-                    ))}
+                    )}
                   </TableBody>
                 </Table>
               </Box>
