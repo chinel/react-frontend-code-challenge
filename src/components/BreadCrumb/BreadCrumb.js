@@ -1,26 +1,7 @@
 import React from "react";
-import { makeStyles, Breadcrumbs, Link } from "@material-ui/core";
+import { Breadcrumbs, Link } from "@material-ui/core";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-
-const useStyles = makeStyles((theme) => ({
-  breadCrumb: {
-    marginBottom: "5px",
-  },
-  link: {
-    color: "#778699",
-    fontSize: "14px",
-    fontFamily: "Product Sans Medium Regular",
-    fontWeight: "400",
-    "&:hover": {
-      textDecoration: "none",
-      color: "#006FD6",
-    },
-  },
-  breadCrumbSeparator: {
-    marginLeft: "0px",
-    marginRight: "0px",
-  },
-}));
+import useStyles from "./BreadCrumbStyles";
 
 function BreadCrumb(props) {
   const classes = useStyles();
