@@ -1,6 +1,6 @@
 import React from "react";
 import useStyles from "./InfoBoxStyles";
-import InfoItem from "./InfoItem";
+import InfoItem from "../InfoItem/InfoItem";
 
 function InfoBox() {
   const classes = useStyles();
