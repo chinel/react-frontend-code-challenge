@@ -1,6 +1,6 @@
 # Frontend Code Challenge using React js
 
-### [Live Site](https://netflix-clone-4a12f.firebaseapp.com)
+### [Live Site](https://frontend-react-challenge.netlify.app)
 
 ![Frontend Code Challenge using React js](https://i.imgur.com/T3HLRux.gif)
 
