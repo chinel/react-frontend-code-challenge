@@ -13,7 +13,7 @@ function LoadingProgress() {
         marginTop: 50,
       }}
     >
-      <CircularProgress className={classes.loading} />
+      <CircularProgress data-testid="loader" className={classes.loading} />
     </div>
   );
 }

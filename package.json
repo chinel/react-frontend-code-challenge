@@ -50,7 +50,8 @@
       "!<rootDir>/src/pages/DivisionPage/*.js",
       "!<rootDir>/src/custom-styles.js",
       "!<rootDir>/src/components/index.js",
-      "!<rootDir>/src/graphql-endpoint/*.js"
+      "!<rootDir>/src/graphql-endpoint/*.js",
+      "!<rootDir>/src/assets/*"
     ],
     "coverageThreshold": {
       "global": {

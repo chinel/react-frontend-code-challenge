@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BreadCrumb/> renders the <BreadCrumb with populated data 1`] = `
+<div
+  class="makeStyles-breadCrumb-1"
+>
+  <nav
+    aria-label="breadcrumb"
+    class="MuiTypography-root MuiBreadcrumbs-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+  >
+    <ol
+      class="MuiBreadcrumbs-ol"
+    >
+      <li
+        class="MuiBreadcrumbs-li"
+      >
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-link-2 MuiTypography-colorInherit"
+          href="/"
+        >
+          Divisions
+        </a>
+      </li>
+      <li
+        aria-hidden="true"
+        class="MuiBreadcrumbs-separator"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root makeStyles-breadCrumbSeparator-3 MuiSvgIcon-fontSizeSmall"
+          focusable="false"
+          style="color: rgb(10, 86, 133);"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+          />
+        </svg>
+      </li>
+      <li
+        class="MuiBreadcrumbs-li"
+      >
+        <a
+          class="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-link-2 MuiTypography-colorInherit"
+          href="#"
+        >
+          Modules
+        </a>
+      </li>
+    </ol>
+  </nav>
+</div>
+`;

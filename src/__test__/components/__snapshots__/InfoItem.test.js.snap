@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InfoItem/> renders the <InfoItem/> with populated data 1`] = `
+<div
+  class="MuiPaper-root MuiCard-root makeStyles-card-1 MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    class="makeStyles-content-2"
+  >
+    <h3
+      class="makeStyles-cardTitle-3"
+    >
+      100
+       
+    </h3>
+    <p
+      class="makeStyles-cardSubTitle-4"
+    >
+      <span
+        style="text-transform: capitalize;"
+      >
+        ongoing
+      </span>
+       metric
+    </p>
+  </div>
+  <div>
+    <img
+      alt="info"
+      src="info-icon.svg"
+    />
+  </div>
+</div>
+`;

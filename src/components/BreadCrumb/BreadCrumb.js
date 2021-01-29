@@ -3,7 +3,7 @@ import { Breadcrumbs, Link } from "@material-ui/core";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import useStyles from "./BreadCrumbStyles";
 
-function BreadCrumb(props) {
+function BreadCrumb() {
   const classes = useStyles();
   return (
     <div className={classes.breadCrumb}>
