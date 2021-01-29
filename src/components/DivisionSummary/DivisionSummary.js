@@ -20,9 +20,7 @@ function DivisionSummary() {
     return <LoadingProgress />;
   }
 
-  if (error) return <div>Error fetching Metrics</div>;
-
-  console.log("division", data);
+  if (error) return <div>Error fetching Division Summary details</div>;
 
   return (
     data.division_summary && (

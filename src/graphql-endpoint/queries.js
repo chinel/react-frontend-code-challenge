@@ -27,7 +27,7 @@ export const GET_MODULE_HISTORY = gql`
   query getModuleHistory {
     module_history(order_by: { created_at: asc }) {
       date
-      desc
+      description
       id
       source
     }
