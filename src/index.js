@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { CssBaseline, MuiThemeProvider } from "@material-ui/core";
-import theme from "./theme";
+import theme from "./custom-styles";
 import App from "./App";
 import "./index.css";
 import { ApolloProvider } from "@apollo/client";
