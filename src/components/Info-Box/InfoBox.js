@@ -3,16 +3,14 @@ import useStyles from "./InfoBoxStyles";
 import InfoItem from "../InfoItem/InfoItem";
 import { useQuery } from "@apollo/client";
 import { GET_METRICS } from "../../graphql-endpoint/queries";
-import { CircularProgress } from "@material-ui/core";
+import { LoadingProgress } from "..";
 
 function InfoBox() {
   const classes = useStyles();
   const { data, loading, error } = useQuery(GET_METRICS);
 
   if (loading) {
-    return (
-    
-    );
+    return <LoadingProgress />;
   }
 
   if (error) return <div>Error fetching Metrics</div>;
