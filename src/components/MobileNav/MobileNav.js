@@ -54,12 +54,16 @@ export default function MobileNav(props) {
   return (
     <div>
       <React.Fragment>
-        <Drawer anchor="left" open={status.left} onClose={toggleDrawerHandler}>
+        <Drawer
+          anchor="left"
+          open={status.left}
+          onClose={() => toggleDrawerHandler("left")}
+        >
           <div
             className={classes.list}
             role="presentation"
-            onClick={toggleDrawerHandler}
-            onKeyDown={toggleDrawerHandler}
+            onClick={() => toggleDrawerHandler("left")}
+            onKeyDown={() => toggleDrawerHandler("left")}
           >
             <List className={classes.mobileDropdownMenu}>
               <ListItem button className={classes.activeMenu}>

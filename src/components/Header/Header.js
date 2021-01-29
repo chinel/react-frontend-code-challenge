@@ -255,7 +255,7 @@ function Header(props) {
                 className={classes.menuButton}
                 color="inherit"
                 aria-label="open drawer"
-                onClick={props.toggleDrawer}
+                onClick={() => props.toggleDrawer("left")}
               >
                 <MenuIcon />
               </IconButton>
@@ -368,6 +368,7 @@ function Header(props) {
               aria-label="notifications"
               color="inherit"
               className={classes.notificationButton}
+              onClick={() => props.toggleDrawer("right")}
             >
               <Badge
                 badgeContent={2}
