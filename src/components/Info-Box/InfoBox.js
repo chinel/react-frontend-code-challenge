@@ -11,16 +11,7 @@ function InfoBox() {
 
   if (loading) {
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginTop: 50,
-        }}
-      >
-        <CircularProgress />
-      </div>
+    
     );
   }
 

@@ -9,3 +9,16 @@ export const GET_METRICS = gql`
     }
   }
 `;
+
+export const GET_DIVISION_SUMMARY = gql`
+  query getDivision {
+    division_summary {
+      address
+      email
+      fingerprints
+      id
+      journals
+      phone
+    }
+  }
+`;
