@@ -16,20 +16,6 @@ import { useQuery } from "@apollo/client";
 import { GET_REPORTS } from "../../graphql-endpoint/queries";
 import { LoadingProgress } from "..";
 
-function createData(name, location, status, entries, risk) {
-  return {
-    name,
-    location,
-    status,
-    entries,
-    risk,
-    history: [
-      { date: "2020-01-05", customerId: "11091700", amount: 3 },
-      { date: "2020-01-02", customerId: "Anonymous", amount: 1 },
-    ],
-  };
-}
-
 function TableSummary() {
   const classes = useRowStyles();
   const [checked, setChecked] = React.useState(false);

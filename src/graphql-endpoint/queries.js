@@ -50,3 +50,13 @@ export const GET_REPORTS = gql`
     }
   }
 `;
+
+export const GET_NOTIFICATIONS = gql`
+  query getNotifications {
+    notifications(order_by: { created_at: asc }) {
+      description
+      title
+      id
+    }
+  }
+`;
