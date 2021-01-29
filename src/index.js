@@ -5,7 +5,7 @@ import theme from "./theme";
 import App from "./App";
 import "./index.css";
 import { ApolloProvider } from "@apollo/client";
-import client from "./graphql/client";
+import client from "./graphql-endpoint/client";
 
 ReactDOM.render(
   <ApolloProvider client={client}>
