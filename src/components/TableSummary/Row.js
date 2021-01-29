@@ -41,6 +41,7 @@ function Row(props) {
   const [openMenu, setOpenMenu] = React.useState(false);
   const classes = useRowStyles();
   const anchorRef = React.useRef(null);
+  const prevOpen = React.useRef(open);
 
   const handleToggle = () => {
     setOpenMenu((prevOpen) => !prevOpen);
@@ -60,7 +61,6 @@ function Row(props) {
     }
   }
 
-  const prevOpen = React.useRef(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();

@@ -25,7 +25,7 @@ export default function MobileNav(props) {
             onKeyDown={() => toggleDrawerHandler("left")}
           >
             <List className={classes.mobileDropdownMenu}>
-              <ListItem button className={classes.activeMenu}>
+              <ListItem button>
                 <ListItemIcon>
                   <svg
                     className={classes.svgIcon}
@@ -65,7 +65,7 @@ export default function MobileNav(props) {
                 </ListItemIcon>
                 <ListItemText primary="Entries" />
               </ListItem>
-              <ListItem button>
+              <ListItem button className={classes.activeMenu}>
                 <ListItemIcon>
                   <svg
                     className={`${classes.lastIcon} ${classes.svgIcon}`}
