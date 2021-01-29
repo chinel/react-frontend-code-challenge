@@ -141,7 +141,7 @@ const useStyles = makeStyles((theme) => ({
   userIcon: {
     backgroundColor: "#D8D8D8",
     padding: "4px",
-    marginLeft: "20px",
+
     borderRadius: "50%",
     width: "35px",
     height: "35px",
@@ -152,6 +152,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttonNav: {
+    marginLeft: "20px",
     "&:hover": {
       backgroundColor: "transparent",
     },

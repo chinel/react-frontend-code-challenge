@@ -33,3 +33,19 @@ export const GET_MODULE_HISTORY = gql`
     }
   }
 `;
+
+export const GET_REPORTS = gql`
+  query getReports {
+    report(order_by: { created_at: asc }) {
+      address
+      created_at
+      entries
+      entry_type
+      id
+      issues
+      name
+      risk
+      state
+    }
+  }
+`;
