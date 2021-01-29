@@ -1,13 +1,6 @@
 import React from "react";
+import useStyles from "./InfoBoxStyles";
 import InfoItem from "./InfoItem";
-import { makeStyles } from "@material-ui/core";
-
-const useStyles = makeStyles({
-  cardContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-});
 
 function InfoBox() {
   const classes = useStyles();
