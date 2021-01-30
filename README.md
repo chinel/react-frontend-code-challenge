@@ -1,4 +1,4 @@
-# Frontend Code Challenge using React js
+# Frontend Code Challenge using React js, GraphQl and PostgreSQL
 
 ### [Live Site](https://frontend-react-challenge.netlify.app)
 
@@ -7,6 +7,10 @@
 ## Introduction
 
 This application is a one page dashboard frontend code challenge built using React js
+
+## Backend
+
+The backend of this application is a serverless backend built with GraphQl and PostgreSQL
 
 ### Test coverage
 
@@ -19,5 +23,7 @@ This application is a one page dashboard frontend code challenge built using Rea
 - Functional Components
 - React State
 - React Hooks
+- Graphql
+- PostgreSQL
 - React Testing Library
 - Jest
